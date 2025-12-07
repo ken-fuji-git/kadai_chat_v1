@@ -28,52 +28,25 @@ Firebaseとlocal storage を併用した事で、データの取り扱いがぐ�
 いつもだったら途中で考えが散らかって収集がつかなくなるのですが、ワイヤーフレームを作った事で最後まで方針が振れずに対応できたと思います。設計は大事だと痛感しました。
 
 ## 起動時メモ（DOM生成と監視開始）
-┌─────────────────────────────────────────────┐
-│                 起動（main.js）              │
-└─────────────────────────────────────────────┘
-    │
-    ├─ ① 定数・状態を用意
-    │     COLORS / GRID_SIZE / currentColor など
-    │
-    ├─ ② Firebase初期化
-    │     initializeApp()
-    │     getDatabase()
-    │     dbRef = ref(db, "pixel_sync/events")
-    │
-    ├─ ③ 受信の仕込み（ここ超大事）
-    │     onChildAdded(dbRef, ...)
-    │
-    ├─ ④ UI生成
-    │
-    │   ┌───────────────────────────┐
-    │   │ renderPalette()            │
-    │   └───────────────────────────┘
-    │            │
-    │            │  COLORS.forEach((c, i) => ...)
-    │            ▼
-    │      色チップDOMを8個作る
-    │      ・背景色 = c
-    │      ・data-color = c
-    │      ・i===0だけ selected
-    │            │
-    │            ▼
-    │       #palette に append
-    │
-    │   ┌───────────────────────────┐
-    │   │ renderGrid()               │
-    │   └───────────────────────────┘
-    │            │
-    │            │  for i=0..63
-    │            ▼
-    │      マスDOMを64個作る
-    │      ・data-index = i
-    │      ・data-color = "#FFFFFF"
-    │            │
-    │            ▼
-    │       #grid に append
-    │
-    └─ ⑤ localStorage読込
-            あれば保存プレビューを表示
+flowchart TD
+    A[起動 main.js] --> B[① 定数・状態を用意<br/>COLORS / GRID_SIZE / currentColor]
+    B --> C[② Firebase初期化<br/>initializeApp / getDatabase / dbRef]
+    C --> D[③ 受信の仕込み<br/>onChildAdded(dbRef, ...)]
+    D --> E[④ UI生成]
+
+    E --> F[renderPalette()]
+    F --> G[COLORS.forEach((c, i) => ...)]
+    G --> H[色チップDOMを作る<br/>背景色=c<br/>data-color=c<br/>i==0だけselected]
+    H --> I[#paletteにappend]
+
+    E --> J[renderGrid()]
+    J --> K[for i=0..63]
+    K --> L[マスDOMを作る<br/>data-index=i<br/>data-color=#FFFFFF]
+    L --> M[#gridにappend]
+
+    E --> N[⑤ localStorage読込]
+    N --> O[保存があれば<br/>保存プレビュー表示]
+
 
 ## 操作時メモ（ローカル反映 → Firebase → 全員に反映）
 
