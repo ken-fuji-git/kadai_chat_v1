@@ -32,7 +32,7 @@ Firebaseとlocal storage を併用した事で、データの取り扱いがぐ�
 図①：起動時の流れ（DOM生成＆受信準備）
 ────────────────────────────────────────────
 
-[main.js 起動]
+　[main.js 起動]
    |
    +--> ① 定数/状態を用意
    |       - GRID_SIZE = 8
@@ -77,13 +77,13 @@ Firebaseとlocal storage を併用した事で、データの取り扱いがぐ�
 
 A) 色チップクリック（色選択）
 
-[ユーザー]
+　[ユーザー]
    |
    v
-[.color-chip をクリック]
+　[.color-chip をクリック]
    |
    v
-[click handler]
+　[click handler]
    |
    +--> 全チップ selected を外す
    |
@@ -96,13 +96,13 @@ A) 色チップクリック（色選択）
 
 B) マスクリック（リアルタイムの核）
 
-[ユーザー]
+　[ユーザー]
    |
    v
-[.cell をクリック]
+　[.cell をクリック]
    |
    v
-[index取得]
+　[index取得]
   - $(this).attr("data-index")
    |
    v
@@ -131,10 +131,10 @@ B) マスクリック（リアルタイムの核）
 
 C) ALL CLEAR
 
-[ALL CLEAR]
+　[ALL CLEAR]
    |
    v
-[confirm "全て削除しますか？"]
+　[confirm "全て削除しますか？"]
    |
    +--> キャンセル：終了
    |
@@ -155,7 +155,7 @@ C) ALL CLEAR
 
 D) SAVE ▶（保存は1件・ローカルのみ）
 
-[SAVE ▶]
+　[SAVE ▶]
    |
    v
 ① 盤面の状態を配列化
@@ -172,7 +172,7 @@ D) SAVE ▶（保存は1件・ローカルのみ）
 
 E) 保存領域クリック → 復元 → Firebase反映
 
-[保存領域クリック]
+　[保存領域クリック]
    |
    v
 [confirm "保存した情報で塗り替えますか？"]
