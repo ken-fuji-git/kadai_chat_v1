@@ -2,13 +2,13 @@
 import { initializeApp }
     from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import {
-    getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved 
+    getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
 
 // =============================
-// Firebaseの情報（入れてません）
+// ＊＊＊Firebaseの情報（入れてません）＊＊＊
 // =============================
-  const firebaseConfig = {
+const firebaseConfig = {
 
 };
 
@@ -16,11 +16,11 @@ import {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// イベントログ型：イベントが溜まっていく場所
+// イベントが溜まっていく場所
 const dbRef = ref(db, "pixel_sync");
 
 // =============================
-// 2) 画面仕様
+// 画面仕様
 // =============================
 const GRID_SIZE = 8;
 const CELL_COUNT = GRID_SIZE * GRID_SIZE;
